@@ -23,11 +23,22 @@ public class DbInit {
         }
     }
 
-    // используется в тестах
     public void create() throws SQLException, IOException {
-        String sql = getSQL("dbcreate.sql");
-        source.statement(stmt -> {
-            stmt.execute(sql);
-        });
+        for (var name : new String[]{
+                "createDb.sql",
+                "createTableAirports.sql",
+                "createTableAircrafts.sql",
+                "createTableBookings.sql",
+                "createTableFlights.sql",
+                "createTableSeats.sql",
+                "createTableTickets.sql",
+                "createTableTicketFlights.sql",
+                "createTableBoardingPasses.sql"
+        }) {
+            String sql = getSQL(name);
+            source.statement(stmt -> {
+                stmt.execute(sql);
+            });
+        }
     }
 }

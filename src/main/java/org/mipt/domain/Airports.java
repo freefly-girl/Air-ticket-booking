@@ -1,14 +1,31 @@
 package org.mipt.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.json.JSONObject;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Airports {
-    private final String airportCode;
-    private final JSONObject city;
-    private final JSONObject airportName;
-    // todo: POINT, TEXT
-//    private final coordinates;
-//    private final timezone; // text
+    @Id
+    @PrimaryKeyJoinColumn(name = "airport_name", referencedColumnName = "ticket_no")
+    @PrimaryKeyJoinColumn(name = "flight_id", referencedColumnName = "flight_id")
+    @Column(name = "airport_code")
+    private String airportCode;
+    @Column(name = "airport_name")
+    private String airportName;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "coordinates")
+    private String coordinates;
+    @Column(name = "timezone")
+    private String timezone;
+
 }

@@ -1,10 +1,25 @@
 package org.mipt.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Seats {
-    private final String aircraft_code;
-    private final String seat_no;
-    private final String fare_conditions; // todo: можно создать отдельный класс для обозначения Класса обслуживания
+    @Id
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "aircraft_code", referencedColumnName = "aircraft_code")
+    @Column(name = "aircraft_code")
+    private Aircrafts aircraftCode;
+    @Id
+    @Column(name = "seat_no")
+    private String seatNo;
+    @Column(name = "fare_conditions")
+    private String fareConditions;
+
 }

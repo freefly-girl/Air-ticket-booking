@@ -1,11 +1,23 @@
 package org.mipt.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.json.JSONObject;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Aircrafts {
-    private final String aircraftCode;
-    private final JSONObject model;
-    private final int range;
+    @Id
+    @Column(name = "aircraft_code")
+    private String aircraftCode;
+    @Column(name = "model")
+    private String model;
+    @Column(name = "range")
+    private Integer range;
 }

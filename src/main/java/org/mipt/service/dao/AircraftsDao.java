@@ -1,7 +1,6 @@
 package org.mipt.service.dao;
 
 import lombok.AllArgsConstructor;
-import org.json.JSONObject;
 import org.mipt.domain.Aircrafts;
 import org.mipt.service.db.SimpleJdbcTemplate;
 
@@ -17,7 +16,7 @@ public class AircraftsDao {
 
     private Aircrafts createAircraft(ResultSet resultSet) throws SQLException {
         return new Aircrafts(resultSet.getString("aircraft_code"),
-                new JSONObject(resultSet.getString("model")),
+                resultSet.getString("model"),
                 resultSet.getInt("range"));
     }
 
@@ -25,7 +24,7 @@ public class AircraftsDao {
         source.preparedStatement("insert into aircrafts(aircraft_code, model, range) values (?, ?, ?)", insertAircrafts -> {
             for (Aircrafts aircraft : aircrafts) {
                 insertAircrafts.setString(1, aircraft.getAircraftCode());
-                insertAircrafts.setString(2, aircraft.getModel()); //todo JSONB
+                insertAircrafts.setString(2, aircraft.getModel());
                 insertAircrafts.setInt(3, aircraft.getRange());
                 insertAircrafts.execute();
             }

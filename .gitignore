@@ -87,26 +87,6 @@ local.properties
 
 ## END OF ECLIPSE ##
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## GRADLE ##
 
 .gradle
@@ -127,3 +107,5 @@ gradle-app.setting
 ## END OF GRADLE ##
 
 .vscode
+/checkstyle.xml
+/airtrans/
